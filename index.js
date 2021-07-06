@@ -8,10 +8,11 @@ program
 	.option('-s, --save', 'save password to password.txt', false)
 	.option('-nn, --no-numbers', 'remove numbers')
 	.option('-ns, --no-symbols', 'remove symbols')
+	.option('-nl, --no-letters', 'remove letters')
 	.parse()
 
-const { length, save, numbers, symbols } = program.opts();
+const { length, save, numbers, symbols, letters } = program.opts();
 
 // Get generated password
-const generatedPassword = createPassword(length, numbers, symbols);
+const generatedPassword = createPassword(length, numbers, symbols, letters);
 console.log(generatedPassword)
