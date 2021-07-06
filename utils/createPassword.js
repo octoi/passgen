@@ -3,16 +3,18 @@ const numbers = '0123456789'
 const symbols = '!@#$%^&*()-_=+[{]}\\|;:\'"<,>.?/'
 
 const createPassword = (length, hasNumbers, hasSymbols, hasLetters) => {
-	let chars = '';
-	hasLetters ? (chars += alpha) : ''
-	hasNumbers ? (chars += numbers) : ''
-	hasSymbols ? (chars += symbols) : ''
+	return new Promise((resolve, reject) => {
+		let chars = '';
+		hasLetters ? (chars += alpha) : ''
+		hasNumbers ? (chars += numbers) : ''
+		hasSymbols ? (chars += symbols) : ''
 
-	if (chars.length === 0) {
-		return 'What kind of password you want, an empty one ??'
-	}
+		if (chars.length === 0) {
+			reject('What kind of password you want, an empty one ??')
+		}
 
-	return generatePassword(length, chars);
+		resolve(generatePassword(length, chars))
+	});
 }
 
 const generatePassword = (length, chars) => {
