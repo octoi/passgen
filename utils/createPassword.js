@@ -2,7 +2,7 @@ const alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const numbers = '0123456789'
 const symbols = '!@#$%^&*()-_=+[{]}\\|;:\'"<,>.?/'
 
-const createPassword = (length = 8, hasNumbers = true, hasSymbols = true, hasLetters = true) => {
+const createPassword = (length, hasNumbers, hasSymbols, hasLetters) => {
 	let chars = '';
 	hasLetters ? (chars += alpha) : ''
 	hasNumbers ? (chars += numbers) : ''
@@ -17,6 +17,12 @@ const createPassword = (length = 8, hasNumbers = true, hasSymbols = true, hasLet
 
 const generatePassword = (length, chars) => {
 	let password = '';
+	length = parseInt(length);
+
+	if (isNaN(length)) {
+		console.log('Invalid length, generating password with default length (8)')
+		length = 8;
+	}
 
 	for (let i = 0; i < length; i++) {
 		password += chars.charAt(Math.floor(Math.random() * chars.length));
