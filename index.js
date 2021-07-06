@@ -1,4 +1,5 @@
 const program = require('commander');
+const chalk = require('chalk')
 const createPassword = require('./utils/createPassword');
 
 program.version('1.0.0').description('Simple password generator'); // version & description of app
@@ -14,5 +15,8 @@ program
 const { length, save, numbers, symbols, letters } = program.opts();
 
 // Get generated password
-const generatedPassword = createPassword(length, numbers, symbols, letters);
-console.log(generatedPassword)
+createPassword(length, numbers, symbols, letters).then(generatedPassword => {
+	console.log(chalk.blue('Generated Password : ') + chalk.bold.green(generatedPassword))
+}).catch(message => {
+	console.log(chalk.red(message))
+})
