@@ -10,7 +10,7 @@ program.version('1.0.0').description('Simple password generator'); // version & 
 program
 	.option('-l, --length <number>', 'length of password', '8')
 	.option('-c, --copy', 'copy password to clipboard')
-	.option('-s, --save', 'save password to passwords.txt', false)
+	.option('-s, --save [filename]', 'save password [default password.txt]', false)
 	.option('-nn, --no-numbers', 'remove numbers')
 	.option('-ns, --no-symbols', 'remove symbols')
 	.option('-nl, --no-letters', 'remove letters')
@@ -29,7 +29,7 @@ createPassword(length, numbers, symbols, letters).then(generatedPassword => {
 	}
 
 	if (save) {
-		savePassword(generatedPassword);
+		savePassword(save, generatedPassword);
 	}
 
 }).catch(message => {
